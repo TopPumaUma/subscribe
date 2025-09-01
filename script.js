@@ -1,8 +1,16 @@
-// Theme Toggle
-const toggleBtn = document.getElementById('theme-toggle');
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('light');
-  document.body.classList.toggle('dark');
+// Theme Switching
+const body = document.body;
+const themeSwitch = document.getElementById("theme-switch");
+const settingsBtn = document.getElementById("settings-btn");
+const settingsMenu = document.getElementById("settings-menu");
+
+settingsBtn.addEventListener("click", () => {
+  settingsMenu.classList.toggle("hidden");
+});
+
+themeSwitch.addEventListener("change", () => {
+  body.classList.toggle("light");
+  body.classList.toggle("dark");
 });
 
 // Carousel Logic
@@ -23,12 +31,49 @@ leftBtn.addEventListener('click', () => {
   if (currentIndex > 0) currentIndex--;
   updateCarousel();
 });
-
 rightBtn.addEventListener('click', () => {
   if (currentIndex < items.length - 1) currentIndex++;
   updateCarousel();
 });
-
-// Responsive initial update
 window.addEventListener('resize', updateCarousel);
 document.addEventListener('DOMContentLoaded', updateCarousel);
+
+// Rain Animation
+const canvas = document.getElementById("rain-canvas");
+const ctx = canvas.getContext("2d");
+let drops = [];
+
+function initRain() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  drops = [];
+  for (let i = 0; i < 200; i++) {
+    drops.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      length: Math.random() * 20 + 10,
+      speed: Math.random() * 4 + 2,
+    });
+  }
+}
+
+function drawRain() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = body.classList.contains("light") ? "black" : "white";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let drop of drops) {
+    ctx.moveTo(drop.x, drop.y);
+    ctx.lineTo(drop.x, drop.y + drop.length);
+  }
+  ctx.stroke();
+
+  for (let drop of drops) {
+    drop.y += drop.speed;
+    if (drop.y > canvas.height) {
+      drop.y = -drop.length;
+      drop.x = Math.random() * canvas.width;
+    }
+  }
+
+  requestAnimationFrame(drawRain);
