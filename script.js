@@ -1,4 +1,4 @@
-// Theme & Settings
+// Theme toggle
 const body = document.body;
 const themeSwitch = document.getElementById("theme-switch");
 const settingsBtn = document.getElementById("settings-btn");
@@ -13,14 +13,30 @@ themeSwitch.addEventListener("change", () => {
   body.classList.toggle("dark");
 });
 
-// Carousel
-const track = document.querySelector('.carousel-track');
-const items = Array.from(track.children);
-const leftBtn = document.querySelector('.arrow.left');
-const rightBtn = document.querySelector('.arrow.right');
-let currentIndex = 0;
+// Carousel behavior
+const track = document.querySelector(".carousel-track");
+const items = document.querySelectorAll(".carousel-item");
+const leftBtn = document.querySelector(".arrow.left");
+const rightBtn = document.querySelector(".arrow.right");
+
+let index = 0;
+const itemWidth = items[0].offsetWidth + 16;
 
 function updateCarousel() {
-  const offset = -(currentIndex * (items[0].offsetWidth + 16));
+  const offset = -index * itemWidth;
   track.style.transform = `translateX(${offset}px)`;
-  leftBtn.disabled = currentIndex === 0;
+}
+
+leftBtn.addEventListener("click", () => {
+  if (index > 0) {
+    index--;
+    updateCarousel();
+  }
+});
+
+rightBtn.addEventListener("click", () => {
+  if (index < items.length - 1) {
+    index++;
+    updateCarousel();
+  }
+});
