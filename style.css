@@ -9,8 +9,6 @@ body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   transition: background 0.3s, color 0.3s;
-  overflow-x: hidden;
-  position: relative;
 }
 
 body.dark {
@@ -23,16 +21,18 @@ body.light {
   color: var(--text-light);
 }
 
+/* Canvas background */
 canvas#rain-canvas {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -1;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: -1;
 }
 
+/* Settings button + menu */
 .top-bar {
   position: fixed;
   top: 1rem;
@@ -48,21 +48,19 @@ canvas#rain-canvas {
   color: inherit;
 }
 
-#settings-menu {
-  margin-top: 0.5rem;
-  background: rgba(0,0,0,0.8);
-  padding: 1rem;
-  border-radius: 8px;
-  color: white;
+.settings-menu {
   position: absolute;
+  top: 2.5rem;
   right: 0;
-  min-width: 150px;
-  display: flex;
-  flex-direction: column;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 
-body.light #settings-menu {
-  background: rgba(255,255,255,0.9);
+body.light .settings-menu {
+  background: rgba(255,255,255,0.95);
   color: black;
 }
 
@@ -70,7 +68,7 @@ body.light #settings-menu {
   display: none;
 }
 
-/* Toggle Switch */
+/* Toggle switch */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -94,7 +92,7 @@ body.light #settings-menu {
   content: '';
   width: 16px;
   height: 16px;
-  background: #fff;
+  background: white;
   border-radius: 50%;
   position: absolute;
   top: 2px;
@@ -106,6 +104,7 @@ body.light #settings-menu {
   transform: translateX(20px);
 }
 
+/* Hero section */
 .hero {
   padding: 6rem 1rem 2rem;
   text-align: center;
@@ -123,7 +122,7 @@ body.light #settings-menu {
   color: #fff;
 }
 
-/* Carousel styles */
+/* Carousel */
 .favorites {
   padding: 2rem 1rem;
   text-align: center;
