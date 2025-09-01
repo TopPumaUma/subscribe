@@ -21,7 +21,6 @@ body.light {
   color: var(--text-light);
 }
 
-/* Canvas background */
 canvas#rain-canvas {
   position: fixed;
   top: 0;
@@ -32,7 +31,7 @@ canvas#rain-canvas {
   pointer-events: none;
 }
 
-/* Settings button + menu */
+/* Settings Menu */
 .top-bar {
   position: fixed;
   top: 1rem;
@@ -68,7 +67,7 @@ body.light .settings-menu {
   display: none;
 }
 
-/* Toggle switch */
+/* Toggle Switch */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -104,7 +103,7 @@ body.light .settings-menu {
   transform: translateX(20px);
 }
 
-/* Hero section */
+/* Hero Section */
 .hero {
   padding: 6rem 1rem 2rem;
   text-align: center;
@@ -120,9 +119,32 @@ body.light .settings-menu {
   align-items: center;
   justify-content: center;
   color: #fff;
+  font-weight: bold;
 }
 
-/* Carousel */
+.sub-counter {
+  margin-top: 1rem;
+}
+
+/* Social Links */
+.social-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icon {
+  color: inherit;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #ff0000; /* YouTube red */
+}
+
+/* Favorites Section */
 .favorites {
   padding: 2rem 1rem;
   text-align: center;
@@ -130,33 +152,4 @@ body.light .settings-menu {
 
 .carousel {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  max-width: 90%;
-  margin: auto;
-  position: relative;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.4s ease;
-}
-
-.carousel-item {
-  min-width: 300px;
-  margin: 0 0.5rem;
-}
-
-.carousel iframe {
-  width: 100%;
-  height: 180px;
-}
-
-.arrow {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: inherit;
-}
+  align-items: cente
